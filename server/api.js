@@ -54,8 +54,12 @@ api.get('/student/:studentid', function(req, res, next){
 // - new campus
 // - new student
 api.post('/campus', function(req, res, next){
-	console.log(req.body.name, req.body.text)
 	var newCampus = campusBank.add(req.body.name, req.body.text);
+	// io.socket.emit('new_tweet', newTweet); //deal with this later
+	res.redirect('/')
+})
+api.post('/student', function(req, res, next){
+	var newStudent = studentBank.add(req.body.name); //ask for first name last name
 	// io.socket.emit('new_tweet', newTweet);
 	res.redirect('/')
 })
