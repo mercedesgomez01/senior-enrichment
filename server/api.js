@@ -50,4 +50,15 @@ api.get('/student/:studentid', function(req, res, next){
 	res.json(studentById)
 })
 
+// POST
+// - new campus
+// - new student
+api.post('/campus', function(req, res, next){
+	console.log(req.body.name, req.body.text)
+	var newCampus = campusBank.add(req.body.name, req.body.text);
+	// io.socket.emit('new_tweet', newTweet);
+	res.redirect('/')
+})
+
+
 module.exports = api
