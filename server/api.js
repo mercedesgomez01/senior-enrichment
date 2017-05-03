@@ -2,6 +2,7 @@
 const api = require('express').Router()
 const db = require('../db')
 const campusBank = require('../campusBank')
+const studentBank = require('../studentBank')
 
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
 	// I know this because we automatically send index.html for all requests that don't make sense in our backend.
@@ -17,6 +18,17 @@ function respondWithAllCampuses (req, res, next){
 	// });
 	res.json(allTheCampuses) //temporary
 }
+
+function respondWithAllStudents (req, res, next){
+	var allTheStudents = studentBank.list();
+	// res.render('index', {
+	// 	title: "Campus Website!",
+	// 	campuses: allTheCampuses,
+	// 	showForm: true
+	// });
+	res.json(allTheStudents) //temporary
+}
+
 // GET 
 // - all campuses
 // - a campus by id
@@ -29,6 +41,13 @@ api.get('/campus/:campusid', function(req, res, next){
 	var campusById = campusBank.find({ id: Number(req.params.campusid) });
 	console.log( req.params.campusid )
 	res.json(campusById)
+})
+
+api.get('/students', respondWithAllStudents)
+api.get('/student/:studentid', function(req, res, next){
+	var studentById = studentBank.find({ id: Number(req.params.studentid) });
+	console.log( req.params.studentid )
+	res.json(studentById)
 })
 
 module.exports = api
