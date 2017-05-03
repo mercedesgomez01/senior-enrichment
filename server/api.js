@@ -7,4 +7,15 @@ const db = require('../db')
 	// Ideally you would have something to handle this, so if you have time try that out!
 api.get('/hello', (req, res) => res.send({hello: 'world'}))
 
+// GET 
+// - all campuses
+// - a campus by id
+// - all students
+// - a student by id
+api.get('/academics', (req, res, next) => {
+	res.send({campus: "all campuses"})
+	// var allTheCampuses = campusBank.list();
+	// res.render()
+})
+
 module.exports = api
